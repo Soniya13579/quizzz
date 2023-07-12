@@ -2,9 +2,9 @@
   <div *ngIf="category.length > 0">
     <h3>QUIZ MAKER</h3>
     <p-dropdown id="categorySelect" [options]="category" [(ngModel)]="selectedCategory" [autoDisplayFirst]="false"
-      [style]="{'minWidth':'30%'}"></p-dropdown>
+      [style]="{'minWidth':'30%'}" placeholder="Select a category"></p-dropdown>
     <p-dropdown id="difficultySelect" [options]="difficulty" [(ngModel)]="selectedDifficulty" [autoDisplayFirst]="false"
-      [style]="{'minWidth':'25%'}"></p-dropdown>
+      [style]="{'minWidth':'25%'}" placeholder="Select difficulty"></p-dropdown>
     <p-button label="Create" id="createBtn" (click)="getQuiz(selectedCategory, selectedDifficulty)"></p-button>
   </div>
 

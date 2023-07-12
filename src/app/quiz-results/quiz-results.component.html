@@ -4,7 +4,7 @@
     <b><span [innerHTML]="ques.question"></span></b>
     <div *ngFor="let opt of ques.incorrect_answers;">
       <label
-        [ngStyle]="ques.selected_answer == opt && ques.selected_answer == ques.correct_answer ? {'color': 'green'} : ques.selected_answer == opt ? {'color': 'red'}: {'color': 'black'}"
+        [ngStyle]="ques.correct_answer == opt ? {'color': 'green'} : ques.selected_answer == opt ? {'color': 'red'}: {'color': 'black'}"
         [innerHTML]="opt">{{opt}}</label>
     </div>
   </div>
