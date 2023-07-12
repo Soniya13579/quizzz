@@ -2,13 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Categories } from './categories';
-import { Quiz } from './quiz';
+import { Quiz, Result } from './quiz';
 
 @Injectable({
   providedIn: 'root'
 })
 export class QuizDataService {
-
+  quizData: Array<Result> = []
+  
   constructor(private http: HttpClient) { }
 
   getCategories():Observable<Categories> {
