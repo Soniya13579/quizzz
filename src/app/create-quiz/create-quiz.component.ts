@@ -17,11 +17,11 @@ export class CreateQuizComponent implements OnInit, OnDestroy {
   difficulty: Array<string> = ["Easy", "Medium", "Hard"]
   selectedCategory: string = ""
   selectedDifficulty: string = ""
-  quizForm!: FormGroup;
+  quizForm: FormGroup = new FormGroup({});
   questions: Array<Result> = [];
   subs: Subscription[] = [];
 
-  constructor(private quizData: QuizDataService, public fb: FormBuilder, private router: Router) { }
+  constructor(private quizData: QuizDataService, private formBuilder: FormBuilder, private router: Router) { }
 
   ngOnInit(): void {
     const sub1 = this.quizData.getCategories().subscribe((resp: Categories) => {
@@ -30,7 +30,13 @@ export class CreateQuizComponent implements OnInit, OnDestroy {
     }, (error) => {
       alert('Error Found!');
     })
-    this.quizForm = new FormGroup({})    
+    this.quizForm = this.formBuilder.group({
+      test_0: ["", [Validators.required]],
+      test_1: ["", [Validators.required]],
+      test_2: ["", [Validators.required]],
+      test_3: ["", [Validators.required]],
+      test_4: ["", [Validators.required]],
+    })    
     this.subs.push(sub1)
   }
 
@@ -41,7 +47,8 @@ export class CreateQuizComponent implements OnInit, OnDestroy {
       this.questions = resp.results
       this.questions.map((a, index) => {
         a.incorrect_answers.push(a.correct_answer)
-        this.quizForm.addControl('test_' + index, new FormControl([Validators.required]))
+        a.incorrect_answers.sort(() => Math.random() - 0.5)
+        // this.quizForm.addControl('test_' + index, new FormControl("", [Validators.required]))
       })
     }, (error) => {
       alert('Error Found!');
@@ -49,7 +56,7 @@ export class CreateQuizComponent implements OnInit, OnDestroy {
     this.subs.push(sub2)
   }
 
-  onSubmit(quizForm: Array<string>) {
+  onSubmit() {
     this.questions.forEach((a, i) => {
       a.selected_answer = this.quizForm.controls['test_' + i].value
     })

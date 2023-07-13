@@ -8,11 +8,11 @@
     <p-button label="Create" id="createBtn" (click)="getQuiz(selectedCategory, selectedDifficulty)"></p-button>
   </div>
 
-  <form [formGroup]="quizForm" (ngSubmit)="onSubmit(quizForm.value)">
+  <form [formGroup]="quizForm" (ngSubmit)="onSubmit()">
     <div *ngFor="let ques of questions;let i = index">
       <b><span [innerHTML]="ques.question"></span></b>
-      <p-selectButton [options]="ques.incorrect_answers" formControlName="test_{{i}}"></p-selectButton><br>
+      <p-selectButton class="form-control" [options]="ques.incorrect_answers" formControlName="test_{{i}}"></p-selectButton><br>
     </div>
-    <button type="submit" class="btn btn-primary" [hidden]="">Submit</button>
-  </form>
+    <p-button type="submit" class="btn btn-primary" [hidden]="!quizForm.valid">Submit</p-button>
+</form>
 </div>
