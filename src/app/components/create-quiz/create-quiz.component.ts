@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { QuizDataService } from '../quiz-data.service';
-import { Categories, TriviaCategory } from '../categories';
-import { Quiz, Result } from '../quiz';
+import { QuizDataService } from '../../quiz-data.service';
+import { Categories, TriviaCategory } from '../../categories';
+import { Quiz, Result } from '../../quiz';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';

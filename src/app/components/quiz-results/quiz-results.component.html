@@ -1,0 +1,26 @@
+<div [style]="">
+  <h3 class="text-center"> Results </h3>
+  <div class="justify-center">
+    <div>
+      <div *ngFor="let ques of resultData">
+        <div [innerHTML]="ques.question"></div>
+        <div class="options-container">
+          <div *ngFor="let opt of ques.incorrect_answers;">
+            <div class='option'
+              [ngStyle]="ques.correct_answer == opt ? {'color': '#ffffff', background: '#198754'} : ques.selected_answer == opt ? {'color': '#ffffff', background: '#ff0000'}: {'color': '#198754'}"
+              [innerHTML]="opt"></div>
+          </div>
+        </div>
+      </div>
+      <div class="action-container">
+        <div class="score-text"
+          [ngStyle]="count < 2 ? {'background':'red'} : count < 4 ? {'background':'yellow'} : {'background':'green'}">
+          You scored {{count}} of 5.
+        </div>
+
+        <button type="submit" class="btn btn-primary new-quizz-btn" routerLink="/">Create a new quiz</button>
+      </div>
+    </div>
+
+  </div>
+</div>

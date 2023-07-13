@@ -1,0 +1,21 @@
+<div [style]="{'text-align-last': 'center'}">
+  <div *ngIf="category.length > 0">
+    <h3 class="title">QUIZ MAKER</h3>
+    <p-dropdown id="categorySelect" [options]="category" [(ngModel)]="selectedCategory" [autoDisplayFirst]="false"
+      [style]="{'minWidth':'30%', 'borderBottomRightRadius': '0', 'borderTopRightRadius': '0'  }"
+      placeholder="Select a category" class="category-select"></p-dropdown>
+    <p-dropdown id="difficultySelect" [options]="difficulty" [(ngModel)]="selectedDifficulty" [autoDisplayFirst]="false"
+      [style]="{'minWidth':'30%', 'borderBottomLeftRadius': '0', 'borderTopLeftRadius': '0', 'borderBottomRightRadius': '0', 'borderTopRightRadius': '0'  }"
+      placeholder="Select difficulty"></p-dropdown>
+    <p-button label="Create" [style]="{ 'borderBottomLeftRadius': '0', 'borderTopLeftRadius': '0',}" class="create-btn"
+      id="createBtn" (click)="getQuiz(selectedCategory, selectedDifficulty)"></p-button>
+  </div>
+
+  <form [formGroup]="quizForm" (ngSubmit)="onSubmit()" class="form-container">
+    <div *ngFor="let ques of questions;let i = index" class="question">
+      <b><span [innerHTML]="ques.question"></span></b>
+      <p-selectButton [options]="ques.incorrect_answers" formControlName="test_{{i}}"></p-selectButton><br>
+    </div>
+    <p-button type="submit" class="btn btn-primary" [hidden]="!quizForm.valid">Submit</p-button>
+  </form>
+</div>
