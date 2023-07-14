@@ -42,6 +42,16 @@ export class CreateQuizComponent implements OnInit, OnDestroy {
   }
 
   getQuiz(cat: string, diff: string) {
+    if(cat == '' || cat == null ||cat == undefined ) {
+      alert("Please select category!")
+      return
+    }
+
+    if(diff == '' || diff == null ||diff == undefined ) {
+      alert("Please select difficulty!")
+      return
+    }
+
     let id = this.categories.find(a => a.name === cat)?.id
 
     const sub2 = this.quizData.getQuizz(id, diff.toLowerCase()).subscribe((resp: Quiz) => {
