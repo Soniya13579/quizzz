@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { QuizDataService } from '../../quiz-data.service';
-import { Categories, TriviaCategory } from '../../categories';
-import { Quiz, Result } from '../../quiz';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Categories, TriviaCategory } from '../../models/categories';
+import { Quiz, Result } from '../../models/quiz';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
@@ -11,13 +11,14 @@ import { Subscription } from 'rxjs';
   templateUrl: './create-quiz.component.html',
   styleUrls: ['./create-quiz.component.css']
 })
+
 export class CreateQuizComponent implements OnInit, OnDestroy {
   category: Array<string> = []
   categories: Array<TriviaCategory> = []
   difficulty: Array<string> = ["Easy", "Medium", "Hard"]
   selectedCategory: string = ""
   selectedDifficulty: string = ""
-  quizForm: FormGroup = new FormGroup({});
+  quizForm !: FormGroup;
   questions: Array<Result> = [];
   subs: Subscription[] = [];
 
@@ -48,7 +49,6 @@ export class CreateQuizComponent implements OnInit, OnDestroy {
       this.questions.map((a, index) => {
         a.incorrect_answers.push(a.correct_answer)
         a.incorrect_answers.sort(() => Math.random() - 0.5)
-        // this.quizForm.addControl('test_' + index, new FormControl("", [Validators.required]))
       })
     }, (error) => {
       alert('Error Found!');

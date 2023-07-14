@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Categories } from './categories';
-import { Quiz, Result } from './quiz';
+import { Categories } from './models/categories';
+import { Quiz, Result } from './models/quiz';
 import { environment } from '../environment/environment'
 
 @Injectable({

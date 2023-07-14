@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { Result } from 'src/app/quiz';
+import { Result } from 'src/app/models/quiz';
 import { QuizDataService } from 'src/app/quiz-data.service';
-
 
 @Component({
   selector: 'app-quiz-results',
   templateUrl: './quiz-results.component.html',
   styleUrls: ['./quiz-results.component.css']
 })
+
 export class QuizResultsComponent implements OnInit{
 
   resultData: Array<Result> = []
